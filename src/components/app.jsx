@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Gif from './gif';
+import SearchBar from './search_bar';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -7,15 +8,28 @@ class App extends Component {
     super(props);
 
     this.state = {
+      gifs: [],
       selectedGifId: "Z1awblkp2wMMGtx3wB",
+      search: "Tigerente",
     };
+  }
+
+  handleSearch = (newSearch) => {
+    this.setState({ search: newSearch });
+    // console.log("handleSearch:");
+    console.log(newSearch);
+    // Here you could also fetch new GIFs based on newSearch
+    // API to fetch array of GIFs
   }
 
   render() {
     return (
       <div>
         <div className="left-scene">
-          <input className="form-search" type="text" />
+          <SearchBar
+            search={this.state.search}
+            onSearch={this.handleSearch}
+          />
           <div className="selected-gif">
             <Gif gifId={this.state.selectedGifId} />
           </div>
