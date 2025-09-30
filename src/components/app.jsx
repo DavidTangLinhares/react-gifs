@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import giphy from 'giphy-api';
+
 import Gif from './gif';
 import SearchBar from './search_bar';
 
@@ -20,6 +22,16 @@ class App extends Component {
     console.log(newSearch);
     // Here you could also fetch new GIFs based on newSearch
     // API to fetch array of GIFs
+    giphy('bMjXzL3Y9KEZOAuAkLBcucEbvqaPoXYF').search({
+      q: 'pokemon',
+      rating: 'g',
+      limit: '10'
+    }, (err, res) => {
+        // Res contains gif data!
+        console.log(res);
+        this.setState({ gifs: res.data });
+        console.log(this.state.gifs);
+    });
   }
 
   render() {
