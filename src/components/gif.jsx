@@ -6,7 +6,7 @@ class Gif extends Component {
     const src = `https://media4.giphy.com/media/${this.props.gifId}/giphy.gif`;
 
     return (
-      <img className="gif" src={src} alt="" />
+      <img className="gif" src={src} alt="selected Gif" />
     );
   }
 }
