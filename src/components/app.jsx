@@ -17,11 +17,14 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.handleSearch(this.state.search);
+  }
+
   handleSearch = (newSearch) => {
-    this.setState({ search: newSearch });
-    // console.log("handleSearch:");
-    console.log(newSearch);
+    // console.log(newSearch);
     // Here you could also fetch new GIFs based on newSearch
+    this.setState({ search: newSearch });
     // API to fetch array of GIFs
     giphy('bMjXzL3Y9KEZOAuAkLBcucEbvqaPoXYF').search({
       q: newSearch,
@@ -29,10 +32,15 @@ class App extends Component {
       limit: '10'
     }, (err, res) => {
       // Res contains gif data!
-      console.log(res);
+      // console.log(res);
       this.setState({ gifs: res.data });
-      console.log(this.state.gifs);
+      // console.log(this.state.gifs);
     });
+  }
+
+  handleClick = (gifId) => {
+    // console.log(gifId);
+    this.setState({ selectedGifId: gifId });
   }
 
   render() {
@@ -44,11 +52,14 @@ class App extends Component {
             onSearch={this.handleSearch}
           />
           <div className="selected-gif">
-            <Gif gifId={this.state.selectedGifId} />
+            <Gif gifId={this.state.selectedGifId}/>
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} />
+          <GifList
+            gifs={this.state.gifs}
+            clickFunction={this.handleClick}
+          />
         </div>
       </div>
     );

@@ -10,6 +10,7 @@ class GifList extends Component {
           <Gif
             key={gif.id}
             gifId={gif.id}
+            clickFunction={this.props.clickFunction}
           />
         ))}
       </div>
