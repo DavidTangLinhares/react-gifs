@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Gif extends Component {
+  shouldComponentUpdate (nextProps) {
+    return this.props.gifId !== nextProps.gifId;
+  }
+
   handleClick = () => {
     const { clickFunction, gifId } = this.props;
     // console.log(gifId);
@@ -13,6 +17,7 @@ class Gif extends Component {
     if (!gifId) {
       return null;
     }
+    console.log(`gif rendering - ${gifId}`);
 
     const src = `https://media4.giphy.com/media/${gifId}/giphy.gif`;
     return (
