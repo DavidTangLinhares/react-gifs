@@ -4,12 +4,16 @@ import React, { Component } from "react";
 class Gif extends Component {
   handleClick = () => {
     const { clickFunction, gifId } = this.props;
-    console.log(gifId);
+    // console.log(gifId);
     clickFunction(gifId);
   }
 
   render() {
     const { gifId } = this.props;
+    if (!gifId) {
+      return null;
+    }
+
     const src = `https://media4.giphy.com/media/${gifId}/giphy.gif`;
     return (
       <button
