@@ -4,13 +4,14 @@ import Gif from './gif';
 // eslint-disable-next-line react/prefer-stateless-function
 class GifList extends Component {
   render() {
+    const { gifs, clickFunction } = this.props;
     return (
       <div className="gif-list">
-        {this.props.gifs.map((gif) => (
+        {gifs.map(gif => (
           <Gif
             key={gif.id}
             gifId={gif.id}
-            clickFunction={this.props.clickFunction}
+            clickFunction={clickFunction}
           />
         ))}
       </div>

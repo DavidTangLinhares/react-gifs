@@ -18,7 +18,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleSearch(this.state.search);
+    const { search } = this.state;
+    this.handleSearch(search);
   }
 
   handleSearch = (newSearch) => {
@@ -38,26 +39,27 @@ class App extends Component {
     });
   }
 
-  handleClick = (gifId) => {
+  handleClick = (selectedGifId) => {
     // console.log(gifId);
-    this.setState({ selectedGifId: gifId });
+    this.setState({ selectedGifId });
   }
 
   render() {
+    const { search, selectedGifId, gifs } = this.state;
     return (
       <div>
         <div className="left-scene">
           <SearchBar
-            search={this.state.search}
+            search={search}
             onSearch={this.handleSearch}
           />
           <div className="selected-gif">
-            <Gif gifId={this.state.selectedGifId}/>
+            <Gif gifId={selectedGifId} />
           </div>
         </div>
         <div className="right-scene">
           <GifList
-            gifs={this.state.gifs}
+            gifs={gifs}
             clickFunction={this.handleClick}
           />
         </div>
